@@ -13,3 +13,10 @@ estimation1: integration.hpp siqrd.hpp optimization.hpp estimation1.cpp
 	$(C) $(FLAGS) -o estimation1 estimation1.cpp
 estimation2: integration.hpp siqrd.hpp optimization.hpp estimation2.cpp
 	$(C) $(FLAGS) -o estimation2 estimation2.cpp
+
+clean:
+	rm -f estimation1 estimation2 simulation1 simulation2
+	rm -f estimation_obs1.txt estimation_obs2.txt
+	rm -f fwe_sim2.txt bwe_sim2.txt heun_sim2.txt 
+	rm -f fwe_no_measures.txt bwe_quarantine.txt heun_lockdown.txt
+	rm -f a.out

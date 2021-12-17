@@ -65,8 +65,6 @@ struct functor_error_jacobian {
 
     template <typename V, typename M>
     void operator()(V const& x, Precision const& delta_t, M & jacob) const {
-        
-        Precision temp;
         for (size_t i = 0; i < 50; ++i) {
             for (size_t j = 0; j < 50; ++j) {
                 if (i != j) {
@@ -88,12 +86,14 @@ int main(int argc, char *argv[]) {
     typedef double Precision; // the precision of floating point numbers
 
     assert(argc == 3);
-    int N = std::stoi(argv[1]);
+    size_t N = std::stoi(argv[1]);
     Precision T = std::stod(argv[2]);
     Precision delta_t = T / N;
 
 
     ublas::matrix<Precision> X(N + 1, 50);
+
+    // initial conditions
     ublas::matrix_row<ublas::matrix<Precision>> initial_conditions(X, 0);
     std::iota(initial_conditions.begin(), initial_conditions.end(), 1);
     initial_conditions *= 0.01;
@@ -106,15 +106,19 @@ int main(int argc, char *argv[]) {
         }
     };
 
-
+    // do forward euler simulation
     integration::forward_euler(X, function_time_deriv<Precision>, delta_t);
     IO::write_sim2(X, "fwe_sim2.txt", T, N);
 
+    // instantiate functors 
     functor_time_deriv<Precision> deriv_inst;
     functor_error_jacobian<Precision> jacob_inst;
+
+    // backward euler simulation
     integration::backward_euler(X, deriv_inst, jacob_inst, delta_t);
     IO::write_sim2(X, "bwe_sim2.txt", T, N);
 
+    // heun method simulation
     integration::heun_method(X, lambda_time_deriv, delta_t);
     IO::write_sim2(X, "heun_sim2.txt", T, N);
 }

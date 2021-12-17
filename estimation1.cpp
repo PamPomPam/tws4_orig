@@ -7,8 +7,6 @@ make estimation1
 */
 
 
-
-
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/matrix_proxy.hpp>
@@ -30,12 +28,15 @@ namespace ublas = boost::numeric::ublas;
 
 int main(int argc, char *argv[]) {
     typedef double Precision; // the precision of floating point numbers
-    int N;
-    int m;
+    size_t N;
     Precision T;
-    ublas::matrix<Precision> observations(IO::load_observations("observations1.in", N, m, T));
     ublas::identity_matrix<Precision> I(5); 
 
+
+    // Observations 1 //
+    ////////////////////
+
+    ublas::matrix<Precision> observations(IO::load_observations("observations1.in", N, T));
 
     // initial guess for model parameters
     ublas::vector<Precision> p(5);
@@ -52,7 +53,10 @@ int main(int argc, char *argv[]) {
     
 
 
-    ublas::matrix<Precision> observations2(IO::load_observations("observations2.in", N, m, T));
+    // Observations 2 //
+    ////////////////////
+
+    ublas::matrix<Precision> observations2(IO::load_observations("observations2.in", N, T));
 
     // initial guess for model parameters
     p <<= 0.5, 0.08, 0.04, 0.004, 0.09;

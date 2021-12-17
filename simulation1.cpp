@@ -28,11 +28,11 @@ int main(int argc, char *argv[]) {
     typedef double Precision; // the precision of floating point numbers
 
     assert(argc == 3);
-    int N = std::stoi(argv[1]);
+    size_t N = std::stoi(argv[1]);
     Precision T = std::stof(argv[2]);
     Precision delta_t = T / N;
 
-    ublas::matrix<Precision> SIQRD(N + 1, 5); // matrix that will store all x's at each moment
+    ublas::matrix<Precision> SIQRD(N + 1, 5); // matrix that will store all x's at each moment in time
     ublas::matrix_row<ublas::matrix<Precision>> initial_conditions(SIQRD, 0);
     initial_conditions <<= 100, 5, 0, 0, 0;
 
@@ -40,20 +40,28 @@ int main(int argc, char *argv[]) {
     ublas::vector<Precision> p(5);
     p <<= 0.5, 0, 0.2, 0.005, 0;
     //p <<= 10.0, 0.0, 10.0, 1.0, 0.0; // can be used to compare to fortran code
-    
 
+
+    // instantiate functor
     siqrd::Time_deriv<Precision> myderiv_fwe(p);
+    // do actual simulation using forward euler
     integration::forward_euler(SIQRD, myderiv_fwe, delta_t);
+    // write output to file
     IO::write_siqrd(SIQRD, "fwe_no_measures.txt", T, N);
 
+
+    // change parameter delta
     p(4) = 0.2;
     siqrd::Time_deriv<Precision> myderiv_bwe(p);
     siqrd::Error_jacob<Precision> myjacob_bwe(p);
+    // backward euler simulation
     integration::backward_euler(SIQRD, myderiv_bwe, myjacob_bwe, delta_t);
     IO::write_siqrd(SIQRD, "bwe_quarantine.txt", T, N);
 
+
     p(4) = 0.9;
     siqrd::Time_deriv<Precision> myderiv_heun(p);
+    // heun method simulation
     integration::heun_method(SIQRD, myderiv_heun, delta_t);
     IO::write_siqrd(SIQRD, "heun_lockdown.txt", T, N);
 }

@@ -28,10 +28,9 @@ namespace ublas = boost::numeric::ublas;
 
 int main(int argc, char *argv[]) {
     typedef double Precision; // the precision of floating point numbers
-    int N;
-    int m;
+    size_t N;
     Precision T;
-    ublas::matrix<Precision> observations(IO::load_observations("observations1.in", N, m, T));
+    ublas::matrix<Precision> observations(IO::load_observations("observations1.in", N, T));
 
     // initial guess for model parameters
     ublas::vector<Precision> p0(5);
@@ -53,13 +52,13 @@ int main(int argc, char *argv[]) {
     optimization::BFGS(my_eval_func_fwe, p0, I, 1e-7, 1., 1e-4);
 
 
-    std::cout << "------------------------------------" << std::endl;
+    std::cout << "------------------------------------" << std::endl << std::endl;
     std::cout << "Backward Euler:" << std::endl;
     p0 <<= 0.32, 0.03, 0.151, 0.004, 0.052;
     optimization::BFGS(my_eval_func_bwe, p0, I, 1e-7, 1., 1e-4);
     
 
-    std::cout << "------------------------------------" << std::endl;
+    std::cout << "------------------------------------" << std::endl << std::endl;
     std::cout << "Heun's method:" << std::endl;
     p0 <<= 0.32, 0.03, 0.151, 0.004, 0.052;
     siqrd::LSE<Precision> my_eval_func_heun(observations, T, integration::heun, 8); // objective function heun method

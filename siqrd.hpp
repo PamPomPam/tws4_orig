@@ -84,10 +84,13 @@ namespace siqrd {
         LSE(ublas::matrix<Precision> observations, Precision T, integration::method method, int nr_steps) :  observations_(observations), \
             N1_(observations.size1()) , N2_((N1_-1) * nr_steps), K_(observations.size2()), \
             simulations_{N2_+1, K_}, method_(method), nr_steps_(nr_steps) {
+                // instantiate all member variables correctly
+
+                // initial conditions for simulations should be same as observations
                 ublas::matrix_row<ublas::matrix<Precision>> observ_initial(observations_, 0);
                 ublas::matrix_row<ublas::matrix<Precision>> simul_initial(simulations_, 0);
-
                 simul_initial.assign(observ_initial);
+                
                 Precision P = sum(observ_initial);
                 multiplication_constant_ = 1 / (P*P*T);
                 delta_t_ = T / N2_;
@@ -95,8 +98,10 @@ namespace siqrd {
 
         template <typename Inputvector>
         Precision operator()(Inputvector const& p) {
+            // instantiate functor for time derivative
             Time_deriv<Precision> myderiv(p);
 
+            // use correct time integration method
             switch(method_) {
             case integration::fwe:
                 {
@@ -119,6 +124,7 @@ namespace siqrd {
                 exit(1);
             }
             
+            // now calculate the error between the simulation and the observations
             Precision total = 0;
             for (size_t i = 0; i < N1_; ++i) {
                 ublas::matrix_row<ublas::matrix<Precision>>observ(observations_, i);
@@ -127,19 +133,20 @@ namespace siqrd {
                 total += std::pow(ublas::norm_2(observ - simul), 2);
             }
             
+            // if total is nan (due to inrealistic parameters), change it to a large value
             if (std::isnan(total)) { total = 1e100; }
+
             return total * multiplication_constant_;
-            
         }
     private:
         size_t N1_; // number of timesteps in oberservations
         size_t N2_; // number of timesteps in simulations
         size_t K_; // nr of columns of observations = 5 (S, I, Q, R, D)
         int nr_steps_; // number of steps per day 
-        Precision delta_t_;
+        Precision delta_t_; // size of timestep 
         Precision multiplication_constant_; // 1 / (P * P * T_), with P population size, remains constant forever
         ublas::matrix<Precision> observations_;
-        integration::method method_;
+        integration::method method_; // forward euler, backward euler or heun method
     public:
         ublas::matrix<Precision> simulations_;
     };
