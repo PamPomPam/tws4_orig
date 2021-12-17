@@ -18,12 +18,16 @@ namespace ublas = boost::numeric::ublas;
 namespace siqrd {
 
     template <typename Precision>
-    struct time_deriv {
+    struct Time_deriv {
+        // functor that can be used in the functions from integration.hpp
+        // calculates the derivative according to the SIQRD-model
+        // class member p_ is the set of parameters (beta, mu, gamma, alpha, delta)
     public:
-        time_deriv(ublas::vector<Precision> const& p) : p_(p) {}
+        Time_deriv(ublas::vector<Precision> const& p) : p_(p) {}
 
         template <typename V1, typename V2>
         void operator()(V1 const& x, V2& dx) const {
+            // x = [S, I, Q, R, D], dx will be [S', I', Q', R', D']
             assert(x.size() == 5);
             dx(0) = - p_(0) * x(0) * x(1) / (x(0) + x(1) + x(3)) + p_(1) * x(3);
             dx(1) = (p_(0) * x(0) / (x(0) + x(1) + x(3)) - p_(2) - p_(4) - p_(3)) * x(1);
@@ -32,22 +36,25 @@ namespace siqrd {
             dx(4) = p_(3) * (x(1) + x(2));
         }
 
-        template <typename V>
-        void change_p(V const& p) {p_ = p;}
-
     private:
         ublas::vector<Precision> p_;
     };
     
 
     template <typename Precision>
-    struct error_jacob {
+    struct Error_jacob {
+        // functor that can be used in the backward euler function from integration.hpp
+        // calculates the jacobi-matrix from the backwards error according to the SIQRD-model
+        // = jacobi-matrix from (X_k + delta_t * X_(K+1)' - X_(k+1)) with respect to X_(k+1)
+        // class member p_ is the set of parameters (beta, mu, gamma, alpha, delta)
     public:
-        error_jacob(ublas::vector<Precision> p) : p_(p) {}
+        Error_jacob(ublas::vector<Precision> p) : p_(p) {}
 
         template <typename V, typename M>
         void operator()(V const& x, Precision const& delta_t, M & jacob) const {
             assert(x.size() == 5);
+
+            // some constants that reappear in the jacobi-matrix
             Precision c1 = delta_t * p_(0) * x(1) * x(0) / std::pow(x(0) + x(1) + x(3), 2);
             Precision c2 = delta_t * p_(0) / (x(0) + x(1) + x(3));
 
@@ -64,55 +71,78 @@ namespace siqrd {
 
     template <typename Precision>
     struct LSE {
+        // functor that can be used as an objective function for an minimization problem
+        // calculates in function of p (=the five SIQRD-model parameters beta, mu, gamma, alpha, delta)
+        // the least squares error between a set of given observations and a simulation given these parameters
+
+        // the simulation happens with a time step of 1/8 day, while the observations have a timestep of 1 day
+        
+        // this function will be called multiple times, so arguments that remain the same 
+        // such as the matrix of observations, the matrix dimensions, the initial conditions of the simulation
+        // are stored as class members
     public:
-        LSE(ublas::matrix<Precision> observations, Precision T) : observations_(observations), \
-            T_(T), N1_(observations_.size1()), N2_((N1_-1) * 8), K_(observations_.size2()), \
-            simulations_{N2_+1, K_} {
+        LSE(ublas::matrix<Precision> observations, Precision T, integration::method method, int nr_steps) :  observations_(observations), \
+            N1_(observations.size1()) , N2_((N1_-1) * nr_steps), K_(observations.size2()), \
+            simulations_{N2_+1, K_}, method_(method), nr_steps_(nr_steps) {
                 ublas::matrix_row<ublas::matrix<Precision>> observ_initial(observations_, 0);
                 ublas::matrix_row<ublas::matrix<Precision>> simul_initial(simulations_, 0);
-                simul_initial = observ_initial;
+
+                simul_initial.assign(observ_initial);
                 Precision P = sum(observ_initial);
-                multiplication_constant_ = 1 / (P*P*T_);
+                multiplication_constant_ = 1 / (P*P*T);
+                delta_t_ = T / N2_;
             }
+
         template <typename Inputvector>
         Precision operator()(Inputvector const& p) {
+            Time_deriv<Precision> myderiv(p);
 
-
-            siqrd::time_deriv<Precision> myderiv(p);
-            //siqrd::error_jacob<double> myjacob(p);
-
-            integration::forward_euler(simulations_, myderiv, T_);
-            //heun_method(SIQRD,myderiv, T);
-            //backward_euler(SIQRD, myderiv, myjacob, T);
-
+            switch(method_) {
+            case integration::fwe:
+                {
+                    integration::forward_euler(simulations_, myderiv, delta_t_);
+                    break;
+                }
+            case integration::bwe:
+                {
+                    Error_jacob<Precision> myjacob(p);
+                    integration::backward_euler(simulations_, myderiv, myjacob, delta_t_);
+                    break;
+                }
+            case integration::heun:
+                {
+                    integration::heun_method(simulations_, myderiv, delta_t_);
+                    break;
+                }
+            default:
+                std::cout << "invalid method" << std::endl;
+                exit(1);
+            }
+            
             Precision total = 0;
             for (size_t i = 0; i < N1_; ++i) {
                 ublas::matrix_row<ublas::matrix<Precision>>observ(observations_, i);
                 ublas::matrix_row<ublas::matrix<Precision>>simul(simulations_, i * 8);
-                
-                total += std::pow(ublas::norm_2(observ - simul), 2) * multiplication_constant_; // multiplication_constant_;
-                
+
+                total += std::pow(ublas::norm_2(observ - simul), 2);
             }
             
-            //total *= multiplication_constant_;
-            if (std::isnan(total)) { total = std::numeric_limits<float>::infinity(); }
-            std::cout << total << std::endl;
-            std::cout << multiplication_constant_ << std::endl;
-            std::cout << "tf" << std::endl;
-            exit(0);
-            return total;
+            if (std::isnan(total)) { total = 1e100; }
+            return total * multiplication_constant_;
+            
         }
     private:
-        size_t N1_;
-        size_t N2_;
-        size_t K_;
-        Precision T_;
-        Precision multiplication_constant_;
+        size_t N1_; // number of timesteps in oberservations
+        size_t N2_; // number of timesteps in simulations
+        size_t K_; // nr of columns of observations = 5 (S, I, Q, R, D)
+        int nr_steps_; // number of steps per day 
+        Precision delta_t_;
+        Precision multiplication_constant_; // 1 / (P * P * T_), with P population size, remains constant forever
         ublas::matrix<Precision> observations_;
+        integration::method method_;
+    public:
         ublas::matrix<Precision> simulations_;
-        
     };
-
 
 
 }; // namespace siqrd

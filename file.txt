@@ -1,0 +1,976 @@
+g++  -O3 -funroll-loops -march=native -std=c++17 -o estimation2 estimation2.cpp
+In file included from estimation2.cpp:23:
+siqrd.hpp: In instantiation of ‘Precision siqrd::LSE<Precision>::operator()(const Inputvector&) [with Inputvector = boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >; Precision = double]’:
+optimization.hpp:91:18:   required from ‘void optimization::BFGS(Function&, boost::numeric::ublas::vector<Precision>, const M&, const Precision&, const Precision&, const Precision&) [with Precision = double; Function = siqrd::LSE<double>; M = boost::numeric::ublas::identity_matrix<double>]’
+estimation2.cpp:78:63:   required from here
+siqrd.hpp:98:49: error: no match for ‘operator<’ (operand types are ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ and ‘int’)
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from estimation2.cpp:12:
+/usr/include/boost/numeric/ublas/vector.hpp:632:16: note: candidate: ‘bool boost::numeric::ublas::vector<T, A>::const_iterator::operator<(const boost::numeric::ublas::vector<T, A>::const_iterator&) const [with T = double; A = boost::numeric::ublas::unbounded_array<double, std::allocator<double> >]’
+  632 |           bool operator < (const const_iterator &it) const {
+      |                ^~~~~~~~
+/usr/include/boost/numeric/ublas/vector.hpp:632:50: note:   no known conversion for argument 1 from ‘int’ to ‘const boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator&’
+  632 |           bool operator < (const const_iterator &it) const {
+      |                            ~~~~~~~~~~~~~~~~~~~~~~^~
+In file included from /usr/include/c++/9/utility:70,
+                 from /usr/include/c++/9/algorithm:60,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_pair.h:454:5: note: candidate: ‘template<class _T1, class _T2> constexpr bool std::operator<(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)’
+  454 |     operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_pair.h:454:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::pair<_T1, _T2>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/stl_algobase.h:67,
+                 from /usr/include/c++/9/algorithm:61,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_iterator.h:331:5: note: candidate: ‘template<class _Iterator> constexpr bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)’
+  331 |     operator<(const reverse_iterator<_Iterator>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_iterator.h:331:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/stl_algobase.h:67,
+                 from /usr/include/c++/9/algorithm:61,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_iterator.h:369:5: note: candidate: ‘template<class _IteratorL, class _IteratorR> constexpr bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)’
+  369 |     operator<(const reverse_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_iterator.h:369:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/stl_algobase.h:67,
+                 from /usr/include/c++/9/algorithm:61,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_iterator.h:1163:5: note: candidate: ‘template<class _IteratorL, class _IteratorR> constexpr bool std::operator<(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)’
+ 1163 |     operator<(const move_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_iterator.h:1163:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::move_iterator<_IteratorL>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/stl_algobase.h:67,
+                 from /usr/include/c++/9/algorithm:61,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_iterator.h:1169:5: note: candidate: ‘template<class _Iterator> constexpr bool std::operator<(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorL>&)’
+ 1169 |     operator<(const move_iterator<_Iterator>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_iterator.h:1169:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::move_iterator<_IteratorL>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/basic_string.h:48,
+                 from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/string_view:510:5: note: candidate: ‘template<class _CharT, class _Traits> constexpr bool std::operator<(std::basic_string_view<_CharT, _Traits>, std::basic_string_view<_CharT, _Traits>)’
+  510 |     operator< (basic_string_view<_CharT, _Traits> __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/string_view:510:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘std::basic_string_view<_CharT, _Traits>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/basic_string.h:48,
+                 from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/string_view:516:5: note: candidate: ‘template<class _CharT, class _Traits> constexpr bool std::operator<(std::basic_string_view<_CharT, _Traits>, std::__detail::__idt<std::basic_string_view<_CharT, _Traits> >)’
+  516 |     operator< (basic_string_view<_CharT, _Traits> __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/string_view:516:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘std::basic_string_view<_CharT, _Traits>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/basic_string.h:48,
+                 from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/string_view:522:5: note: candidate: ‘template<class _CharT, class _Traits> constexpr bool std::operator<(std::__detail::__idt<std::basic_string_view<_CharT, _Traits> >, std::basic_string_view<_CharT, _Traits>)’
+  522 |     operator< (__detail::__idt<basic_string_view<_CharT, _Traits>> __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/string_view:522:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘std::basic_string_view<_CharT, _Traits>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/basic_string.h:6226:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6226 |     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/basic_string.h:6226:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/basic_string.h:6239:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const _CharT*)’
+ 6239 |     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/basic_string.h:6239:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/basic_string.h:6251:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6251 |     operator<(const _CharT* __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/basic_string.h:6251:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const _CharT*’ and ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/array:262:5: note: candidate: ‘template<class _Tp, long unsigned int _Nm> bool std::operator<(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)’
+  262 |     operator<(const array<_Tp, _Nm>& __a, const array<_Tp, _Nm>& __b)
+      |     ^~~~~~~~
+/usr/include/c++/9/array:262:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::array<_Tp, _Nm>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/tuple:1432:5: note: candidate: ‘template<class ... _TElements, class ... _UElements> constexpr bool std::operator<(const std::tuple<_Tps ...>&, const std::tuple<_Elements ...>&)’
+ 1432 |     operator<(const tuple<_TElements...>& __t,
+      |     ^~~~~~~~
+/usr/include/c++/9/tuple:1432:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::tuple<_Tps ...>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/node_handle.h:39,
+                 from /usr/include/c++/9/bits/hashtable.h:37,
+                 from /usr/include/c++/9/unordered_map:46,
+                 from /usr/include/c++/9/functional:61,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/optional:1001:5: note: candidate: ‘template<class _Tp, class _Up> constexpr std::__optional_relop_t<decltype ((declval<_Tp>() < declval<_Up>()))> std::operator<(const std::optional<_Tp>&, const std::optional<_Up>&)’
+ 1001 |     operator<(const optional<_Tp>& __lhs, const optional<_Up>& __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/9/optional:1001:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::optional<_Tp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/node_handle.h:39,
+                 from /usr/include/c++/9/bits/hashtable.h:37,
+                 from /usr/include/c++/9/unordered_map:46,
+                 from /usr/include/c++/9/functional:61,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/optional:1054:5: note: candidate: ‘template<class _Tp> constexpr bool std::operator<(const std::optional<_Tp>&, std::nullopt_t)’
+ 1054 |     operator<(const optional<_Tp>& /* __lhs */, nullopt_t) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/optional:1054:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::optional<_Tp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/node_handle.h:39,
+                 from /usr/include/c++/9/bits/hashtable.h:37,
+                 from /usr/include/c++/9/unordered_map:46,
+                 from /usr/include/c++/9/functional:61,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/optional:1059:5: note: candidate: ‘template<class _Tp> constexpr bool std::operator<(std::nullopt_t, const std::optional<_Tp>&)’
+ 1059 |     operator<(nullopt_t, const optional<_Tp>& __rhs) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/optional:1059:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const std::optional<_Tp>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/node_handle.h:39,
+                 from /usr/include/c++/9/bits/hashtable.h:37,
+                 from /usr/include/c++/9/unordered_map:46,
+                 from /usr/include/c++/9/functional:61,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/optional:1119:5: note: candidate: ‘template<class _Tp, class _Up> constexpr std::__optional_relop_t<decltype ((declval<_Tp>() < declval<_Up>()))> std::operator<(const std::optional<_Tp>&, const _Up&)’
+ 1119 |     operator<(const optional<_Tp>& __lhs, const _Up& __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/9/optional:1119:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::optional<_Tp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/node_handle.h:39,
+                 from /usr/include/c++/9/bits/hashtable.h:37,
+                 from /usr/include/c++/9/unordered_map:46,
+                 from /usr/include/c++/9/functional:61,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/optional:1125:5: note: candidate: ‘template<class _Tp, class _Up> constexpr std::__optional_relop_t<decltype ((declval<_Up>() < declval<_Tp>()))> std::operator<(const _Up&, const std::optional<_Tp>&)’
+ 1125 |     operator<(const _Up& __lhs, const optional<_Tp>& __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/9/optional:1125:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const std::optional<_Tp>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/vector:67,
+                 from /usr/include/c++/9/functional:62,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_vector.h:1905:5: note: candidate: ‘template<class _Tp, class _Alloc> bool std::operator<(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)’
+ 1905 |     operator<(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_vector.h:1905:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::vector<_Tp, _Alloc>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/ios_base.h:46,
+                 from /usr/include/c++/9/ios:42,
+                 from /usr/include/c++/9/ostream:38,
+                 from /usr/include/c++/9/iterator:64,
+                 from /usr/include/boost/operators.hpp:98,
+                 from /usr/include/boost/serialization/strong_typedef.hpp:27,
+                 from /usr/include/boost/serialization/collection_size_type.hpp:10,
+                 from /usr/include/boost/serialization/array_wrapper.hpp:22,
+                 from /usr/include/boost/serialization/array.hpp:26,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:21,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/system_error:208:3: note: candidate: ‘bool std::operator<(const std::error_code&, const std::error_code&)’
+  208 |   operator<(const error_code& __lhs, const error_code& __rhs) noexcept
+      |   ^~~~~~~~
+/usr/include/c++/9/system_error:208:31: note:   no known conversion for argument 1 from ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ to ‘const std::error_code&’
+  208 |   operator<(const error_code& __lhs, const error_code& __rhs) noexcept
+      |             ~~~~~~~~~~~~~~~~~~^~~~~
+/usr/include/c++/9/system_error:282:3: note: candidate: ‘bool std::operator<(const std::error_condition&, const std::error_condition&)’
+  282 |   operator<(const error_condition& __lhs,
+      |   ^~~~~~~~
+/usr/include/c++/9/system_error:282:36: note:   no known conversion for argument 1 from ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ to ‘const std::error_condition&’
+  282 |   operator<(const error_condition& __lhs,
+      |             ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+In file included from /usr/include/c++/9/memory:80,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/unique_ptr.h:749:5: note: candidate: ‘template<class _Tp, class _Dp, class _Up, class _Ep> bool std::operator<(const std::unique_ptr<_Tp, _Dp>&, const std::unique_ptr<_Up, _Ep>&)’
+  749 |     operator<(const unique_ptr<_Tp, _Dp>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/unique_ptr.h:749:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:80,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/unique_ptr.h:760:5: note: candidate: ‘template<class _Tp, class _Dp> bool std::operator<(const std::unique_ptr<_Tp, _Dp>&, std::nullptr_t)’
+  760 |     operator<(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/unique_ptr.h:760:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:80,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/unique_ptr.h:766:5: note: candidate: ‘template<class _Tp, class _Dp> bool std::operator<(std::nullptr_t, const std::unique_ptr<_Tp, _Dp>&)’
+  766 |     operator<(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/unique_ptr.h:766:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const std::unique_ptr<_Tp, _Dp>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/shared_ptr.h:52,
+                 from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr_base.h:1444:5: note: candidate: ‘template<class _Tp, class _Up, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(const std::__shared_ptr<_Tp1, _Lp>&, const std::__shared_ptr<_Tp2, _Lp>&)’
+ 1444 |     operator<(const __shared_ptr<_Tp, _Lp>& __a,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr_base.h:1444:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::__shared_ptr<_Tp1, _Lp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/shared_ptr.h:52,
+                 from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr_base.h:1455:5: note: candidate: ‘template<class _Tp, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(const std::__shared_ptr<_Tp, _Lp>&, std::nullptr_t)’
+ 1455 |     operator<(const __shared_ptr<_Tp, _Lp>& __a, nullptr_t) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr_base.h:1455:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::__shared_ptr<_Tp, _Lp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/shared_ptr.h:52,
+                 from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr_base.h:1463:5: note: candidate: ‘template<class _Tp, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(std::nullptr_t, const std::__shared_ptr<_Tp, _Lp>&)’
+ 1463 |     operator<(nullptr_t, const __shared_ptr<_Tp, _Lp>& __a) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr_base.h:1463:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const std::__shared_ptr<_Tp, _Lp>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr.h:413:5: note: candidate: ‘template<class _Tp, class _Up> bool std::operator<(const std::shared_ptr<_Tp>&, const std::shared_ptr<_Tp>&)’
+  413 |     operator<(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:413:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::shared_ptr<_Tp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr.h:423:5: note: candidate: ‘template<class _Tp> bool std::operator<(const std::shared_ptr<_Tp>&, std::nullptr_t)’
+  423 |     operator<(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:423:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >::const_iterator’ is not derived from ‘const std::shared_ptr<_Tp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr.h:431:5: note: candidate: ‘template<class _Tp> bool std::operator<(std::nullptr_t, const std::shared_ptr<_Tp>&)’
+  431 |     operator<(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:431:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const std::shared_ptr<_Tp>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+siqrd.hpp: In instantiation of ‘Precision siqrd::LSE<Precision>::operator()(const Inputvector&) [with Inputvector = boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >; Precision = double]’:
+optimization.hpp:51:18:   required from ‘Precision optimization::Line_search(Function&, const Inputvector&, const Inputvector&, const Inputvector&, Precision&, const Precision&, const Precision&) [with Precision = double; Function = siqrd::LSE<double>; Inputvector = boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >]’
+optimization.hpp:109:30:   required from ‘void optimization::BFGS(Function&, boost::numeric::ublas::vector<Precision>, const M&, const Precision&, const Precision&, const Precision&) [with Precision = double; Function = siqrd::LSE<double>; M = boost::numeric::ublas::identity_matrix<double>]’
+estimation2.cpp:78:63:   required from here
+siqrd.hpp:98:49: error: no match for ‘operator<’ (operand types are ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ and ‘int’)
+In file included from /usr/include/boost/numeric/ublas/vector.hpp:22,
+                 from estimation2.cpp:12:
+/usr/include/boost/numeric/ublas/vector_expression.hpp:888:18: note: candidate: ‘bool boost::numeric::ublas::vector_binary<E1, E2, F>::const_iterator::operator<(const boost::numeric::ublas::vector_binary<E1, E2, F>::const_iterator&) const [with E1 = boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >; E2 = boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >; F = boost::numeric::ublas::scalar_plus<double, double>]’
+  888 |             bool operator < (const const_iterator &it) const {
+      |                  ^~~~~~~~
+/usr/include/boost/numeric/ublas/vector_expression.hpp:888:52: note:   no known conversion for argument 1 from ‘int’ to ‘const boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator&’
+  888 |             bool operator < (const const_iterator &it) const {
+      |                              ~~~~~~~~~~~~~~~~~~~~~~^~
+In file included from /usr/include/c++/9/utility:70,
+                 from /usr/include/c++/9/algorithm:60,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_pair.h:454:5: note: candidate: ‘template<class _T1, class _T2> constexpr bool std::operator<(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)’
+  454 |     operator<(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_pair.h:454:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::pair<_T1, _T2>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/stl_algobase.h:67,
+                 from /usr/include/c++/9/algorithm:61,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_iterator.h:331:5: note: candidate: ‘template<class _Iterator> constexpr bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)’
+  331 |     operator<(const reverse_iterator<_Iterator>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_iterator.h:331:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/stl_algobase.h:67,
+                 from /usr/include/c++/9/algorithm:61,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_iterator.h:369:5: note: candidate: ‘template<class _IteratorL, class _IteratorR> constexpr bool std::operator<(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)’
+  369 |     operator<(const reverse_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_iterator.h:369:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/stl_algobase.h:67,
+                 from /usr/include/c++/9/algorithm:61,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_iterator.h:1163:5: note: candidate: ‘template<class _IteratorL, class _IteratorR> constexpr bool std::operator<(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)’
+ 1163 |     operator<(const move_iterator<_IteratorL>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_iterator.h:1163:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::move_iterator<_IteratorL>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/stl_algobase.h:67,
+                 from /usr/include/c++/9/algorithm:61,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_iterator.h:1169:5: note: candidate: ‘template<class _Iterator> constexpr bool std::operator<(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorL>&)’
+ 1169 |     operator<(const move_iterator<_Iterator>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_iterator.h:1169:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::move_iterator<_IteratorL>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/basic_string.h:48,
+                 from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/string_view:510:5: note: candidate: ‘template<class _CharT, class _Traits> constexpr bool std::operator<(std::basic_string_view<_CharT, _Traits>, std::basic_string_view<_CharT, _Traits>)’
+  510 |     operator< (basic_string_view<_CharT, _Traits> __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/string_view:510:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘std::basic_string_view<_CharT, _Traits>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/basic_string.h:48,
+                 from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/string_view:516:5: note: candidate: ‘template<class _CharT, class _Traits> constexpr bool std::operator<(std::basic_string_view<_CharT, _Traits>, std::__detail::__idt<std::basic_string_view<_CharT, _Traits> >)’
+  516 |     operator< (basic_string_view<_CharT, _Traits> __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/string_view:516:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘std::basic_string_view<_CharT, _Traits>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/basic_string.h:48,
+                 from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/string_view:522:5: note: candidate: ‘template<class _CharT, class _Traits> constexpr bool std::operator<(std::__detail::__idt<std::basic_string_view<_CharT, _Traits> >, std::basic_string_view<_CharT, _Traits>)’
+  522 |     operator< (__detail::__idt<basic_string_view<_CharT, _Traits>> __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/string_view:522:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘std::basic_string_view<_CharT, _Traits>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/basic_string.h:6226:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6226 |     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/basic_string.h:6226:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/basic_string.h:6239:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const _CharT*)’
+ 6239 |     operator<(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/basic_string.h:6239:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/string:55,
+                 from /usr/include/c++/9/stdexcept:39,
+                 from /usr/include/c++/9/array:39,
+                 from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/basic_string.h:6251:5: note: candidate: ‘template<class _CharT, class _Traits, class _Alloc> bool std::operator<(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)’
+ 6251 |     operator<(const _CharT* __lhs,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/basic_string.h:6251:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const _CharT*’ and ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/tuple:39,
+                 from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/array:262:5: note: candidate: ‘template<class _Tp, long unsigned int _Nm> bool std::operator<(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)’
+  262 |     operator<(const array<_Tp, _Nm>& __a, const array<_Tp, _Nm>& __b)
+      |     ^~~~~~~~
+/usr/include/c++/9/array:262:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::array<_Tp, _Nm>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/functional:54,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/tuple:1432:5: note: candidate: ‘template<class ... _TElements, class ... _UElements> constexpr bool std::operator<(const std::tuple<_Tps ...>&, const std::tuple<_Elements ...>&)’
+ 1432 |     operator<(const tuple<_TElements...>& __t,
+      |     ^~~~~~~~
+/usr/include/c++/9/tuple:1432:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::tuple<_Tps ...>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/node_handle.h:39,
+                 from /usr/include/c++/9/bits/hashtable.h:37,
+                 from /usr/include/c++/9/unordered_map:46,
+                 from /usr/include/c++/9/functional:61,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/optional:1001:5: note: candidate: ‘template<class _Tp, class _Up> constexpr std::__optional_relop_t<decltype ((declval<_Tp>() < declval<_Up>()))> std::operator<(const std::optional<_Tp>&, const std::optional<_Up>&)’
+ 1001 |     operator<(const optional<_Tp>& __lhs, const optional<_Up>& __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/9/optional:1001:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::optional<_Tp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/node_handle.h:39,
+                 from /usr/include/c++/9/bits/hashtable.h:37,
+                 from /usr/include/c++/9/unordered_map:46,
+                 from /usr/include/c++/9/functional:61,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/optional:1054:5: note: candidate: ‘template<class _Tp> constexpr bool std::operator<(const std::optional<_Tp>&, std::nullopt_t)’
+ 1054 |     operator<(const optional<_Tp>& /* __lhs */, nullopt_t) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/optional:1054:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::optional<_Tp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/node_handle.h:39,
+                 from /usr/include/c++/9/bits/hashtable.h:37,
+                 from /usr/include/c++/9/unordered_map:46,
+                 from /usr/include/c++/9/functional:61,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/optional:1059:5: note: candidate: ‘template<class _Tp> constexpr bool std::operator<(std::nullopt_t, const std::optional<_Tp>&)’
+ 1059 |     operator<(nullopt_t, const optional<_Tp>& __rhs) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/optional:1059:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const std::optional<_Tp>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/node_handle.h:39,
+                 from /usr/include/c++/9/bits/hashtable.h:37,
+                 from /usr/include/c++/9/unordered_map:46,
+                 from /usr/include/c++/9/functional:61,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/optional:1119:5: note: candidate: ‘template<class _Tp, class _Up> constexpr std::__optional_relop_t<decltype ((declval<_Tp>() < declval<_Up>()))> std::operator<(const std::optional<_Tp>&, const _Up&)’
+ 1119 |     operator<(const optional<_Tp>& __lhs, const _Up& __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/9/optional:1119:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::optional<_Tp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/node_handle.h:39,
+                 from /usr/include/c++/9/bits/hashtable.h:37,
+                 from /usr/include/c++/9/unordered_map:46,
+                 from /usr/include/c++/9/functional:61,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/optional:1125:5: note: candidate: ‘template<class _Tp, class _Up> constexpr std::__optional_relop_t<decltype ((declval<_Up>() < declval<_Tp>()))> std::operator<(const _Up&, const std::optional<_Tp>&)’
+ 1125 |     operator<(const _Up& __lhs, const optional<_Tp>& __rhs)
+      |     ^~~~~~~~
+/usr/include/c++/9/optional:1125:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const std::optional<_Tp>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/vector:67,
+                 from /usr/include/c++/9/functional:62,
+                 from /usr/include/c++/9/pstl/glue_algorithm_defs.h:13,
+                 from /usr/include/c++/9/algorithm:71,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:16,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/stl_vector.h:1905:5: note: candidate: ‘template<class _Tp, class _Alloc> bool std::operator<(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)’
+ 1905 |     operator<(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/stl_vector.h:1905:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::vector<_Tp, _Alloc>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/ios_base.h:46,
+                 from /usr/include/c++/9/ios:42,
+                 from /usr/include/c++/9/ostream:38,
+                 from /usr/include/c++/9/iterator:64,
+                 from /usr/include/boost/operators.hpp:98,
+                 from /usr/include/boost/serialization/strong_typedef.hpp:27,
+                 from /usr/include/boost/serialization/collection_size_type.hpp:10,
+                 from /usr/include/boost/serialization/array_wrapper.hpp:22,
+                 from /usr/include/boost/serialization/array.hpp:26,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:21,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/system_error:208:3: note: candidate: ‘bool std::operator<(const std::error_code&, const std::error_code&)’
+  208 |   operator<(const error_code& __lhs, const error_code& __rhs) noexcept
+      |   ^~~~~~~~
+/usr/include/c++/9/system_error:208:31: note:   no known conversion for argument 1 from ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ to ‘const std::error_code&’
+  208 |   operator<(const error_code& __lhs, const error_code& __rhs) noexcept
+      |             ~~~~~~~~~~~~~~~~~~^~~~~
+/usr/include/c++/9/system_error:282:3: note: candidate: ‘bool std::operator<(const std::error_condition&, const std::error_condition&)’
+  282 |   operator<(const error_condition& __lhs,
+      |   ^~~~~~~~
+/usr/include/c++/9/system_error:282:36: note:   no known conversion for argument 1 from ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ to ‘const std::error_condition&’
+  282 |   operator<(const error_condition& __lhs,
+      |             ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+In file included from /usr/include/c++/9/memory:80,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/unique_ptr.h:749:5: note: candidate: ‘template<class _Tp, class _Dp, class _Up, class _Ep> bool std::operator<(const std::unique_ptr<_Tp, _Dp>&, const std::unique_ptr<_Up, _Ep>&)’
+  749 |     operator<(const unique_ptr<_Tp, _Dp>& __x,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/unique_ptr.h:749:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:80,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/unique_ptr.h:760:5: note: candidate: ‘template<class _Tp, class _Dp> bool std::operator<(const std::unique_ptr<_Tp, _Dp>&, std::nullptr_t)’
+  760 |     operator<(const unique_ptr<_Tp, _Dp>& __x, nullptr_t)
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/unique_ptr.h:760:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:80,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/unique_ptr.h:766:5: note: candidate: ‘template<class _Tp, class _Dp> bool std::operator<(std::nullptr_t, const std::unique_ptr<_Tp, _Dp>&)’
+  766 |     operator<(nullptr_t, const unique_ptr<_Tp, _Dp>& __x)
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/unique_ptr.h:766:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const std::unique_ptr<_Tp, _Dp>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/shared_ptr.h:52,
+                 from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr_base.h:1444:5: note: candidate: ‘template<class _Tp, class _Up, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(const std::__shared_ptr<_Tp1, _Lp>&, const std::__shared_ptr<_Tp2, _Lp>&)’
+ 1444 |     operator<(const __shared_ptr<_Tp, _Lp>& __a,
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr_base.h:1444:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::__shared_ptr<_Tp1, _Lp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/shared_ptr.h:52,
+                 from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr_base.h:1455:5: note: candidate: ‘template<class _Tp, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(const std::__shared_ptr<_Tp, _Lp>&, std::nullptr_t)’
+ 1455 |     operator<(const __shared_ptr<_Tp, _Lp>& __a, nullptr_t) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr_base.h:1455:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::__shared_ptr<_Tp, _Lp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/bits/shared_ptr.h:52,
+                 from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr_base.h:1463:5: note: candidate: ‘template<class _Tp, __gnu_cxx::_Lock_policy _Lp> bool std::operator<(std::nullptr_t, const std::__shared_ptr<_Tp, _Lp>&)’
+ 1463 |     operator<(nullptr_t, const __shared_ptr<_Tp, _Lp>& __a) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr_base.h:1463:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const std::__shared_ptr<_Tp, _Lp>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr.h:413:5: note: candidate: ‘template<class _Tp, class _Up> bool std::operator<(const std::shared_ptr<_Tp>&, const std::shared_ptr<_Tp>&)’
+  413 |     operator<(const shared_ptr<_Tp>& __a, const shared_ptr<_Up>& __b) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:413:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::shared_ptr<_Tp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr.h:423:5: note: candidate: ‘template<class _Tp> bool std::operator<(const std::shared_ptr<_Tp>&, std::nullptr_t)’
+  423 |     operator<(const shared_ptr<_Tp>& __a, nullptr_t) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:423:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   ‘boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator’ is not derived from ‘const std::shared_ptr<_Tp>’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/c++/9/memory:81,
+                 from /usr/include/boost/numeric/ublas/fwd.hpp:18,
+                 from /usr/include/boost/numeric/ublas/detail/config.hpp:299,
+                 from /usr/include/boost/numeric/ublas/exception.hpp:19,
+                 from /usr/include/boost/numeric/ublas/storage.hpp:25,
+                 from /usr/include/boost/numeric/ublas/vector.hpp:21,
+                 from estimation2.cpp:12:
+/usr/include/c++/9/bits/shared_ptr.h:431:5: note: candidate: ‘template<class _Tp> bool std::operator<(std::nullptr_t, const std::shared_ptr<_Tp>&)’
+  431 |     operator<(nullptr_t, const shared_ptr<_Tp>& __a) noexcept
+      |     ^~~~~~~~
+/usr/include/c++/9/bits/shared_ptr.h:431:5: note:   template argument deduction/substitution failed:
+In file included from estimation2.cpp:23:
+siqrd.hpp:98:49: note:   mismatched types ‘const std::shared_ptr<_Tp>’ and ‘int’
+   98 |             if (min_element(p.begin(), p.end()) < 0) {
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /usr/include/boost/numeric/ublas/vector.hpp:22,
+                 from estimation2.cpp:12:
+/usr/include/boost/numeric/ublas/vector_expression.hpp: In instantiation of ‘boost::numeric::ublas::vector_binary_scalar1<E1, E2, F>::const_iterator& boost::numeric::ublas::vector_binary_scalar1<E1, E2, F>::const_iterator::operator=(const boost::numeric::ublas::vector_binary_scalar1<E1, E2, F>::const_iterator&) [with E1 = const double; E2 = boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >; F = boost::numeric::ublas::scalar_multiplies<double, double>]’:
+/usr/include/boost/numeric/ublas/vector_expression.hpp:876:22:   required from ‘boost::numeric::ublas::vector_binary<E1, E2, F>::const_iterator& boost::numeric::ublas::vector_binary<E1, E2, F>::const_iterator::operator=(const boost::numeric::ublas::vector_binary<E1, E2, F>::const_iterator&) [with E1 = boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >; E2 = boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >; F = boost::numeric::ublas::scalar_plus<double, double>]’
+/usr/include/c++/9/bits/stl_algo.h:5629:13:   required from ‘constexpr _ForwardIterator std::__min_element(_ForwardIterator, _ForwardIterator, _Compare) [with _ForwardIterator = boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator; _Compare = __gnu_cxx::__ops::_Iter_less_iter]’
+/usr/include/c++/9/bits/stl_algo.h:5652:43:   required from ‘constexpr _FIter std::min_element(_FIter, _FIter) [with _FIter = boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >::const_iterator]’
+siqrd.hpp:98:28:   required from ‘Precision siqrd::LSE<Precision>::operator()(const Inputvector&) [with Inputvector = boost::numeric::ublas::vector_binary<boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >, boost::numeric::ublas::scalar_plus<double, double> >; Precision = double]’
+optimization.hpp:51:18:   required from ‘Precision optimization::Line_search(Function&, const Inputvector&, const Inputvector&, const Inputvector&, Precision&, const Precision&, const Precision&) [with Precision = double; Function = siqrd::LSE<double>; Inputvector = boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >]’
+optimization.hpp:109:30:   required from ‘void optimization::BFGS(Function&, boost::numeric::ublas::vector<Precision>, const M&, const Precision&, const Precision&, const Precision&) [with Precision = double; Function = siqrd::LSE<double>; M = boost::numeric::ublas::identity_matrix<double>]’
+estimation2.cpp:78:63:   required from here
+/usr/include/boost/numeric/ublas/vector_expression.hpp:1156:22: error: assignment of read-only member ‘boost::numeric::ublas::vector_binary_scalar1<const double, boost::numeric::ublas::vector<double, boost::numeric::ublas::unbounded_array<double, std::allocator<double> > >, boost::numeric::ublas::scalar_multiplies<double, double> >::const_iterator::it1_’
+ 1156 |                 it1_ = it.it1_;
+      |                 ~~~~~^~~~~~~~~
+make: *** [makefile:15: estimation2] Error 1

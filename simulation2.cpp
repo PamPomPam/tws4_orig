@@ -1,3 +1,13 @@
+
+/* this program can be executed with the following commands:
+
+make simulation2
+./simulation2 50000 500
+
+(this will probably take a very long time)
+*/
+
+
 #include <boost/numeric/ublas/vector.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/matrix_proxy.hpp>
@@ -12,9 +22,11 @@
 #include <algorithm>
 
 #include "integration.hpp"
+#include "IO.hpp"
 
 namespace ublas = boost::numeric::ublas;
 
+// function that can be used to calculate time derivative in the functions from integration.hpp
 template <typename Precision>
 void function_time_deriv(ublas::vector<Precision> const& x, ublas::vector<Precision> & dx ) {
     dx = x;
@@ -23,14 +35,12 @@ void function_time_deriv(ublas::vector<Precision> const& x, ublas::vector<Precis
     std::transform(dx.begin(), dx.end(), dx.begin(), f);
 }
 
-
-
+// functor that can be used to calculate time derivative in the functions from integration.hpp
 template <typename Precision>
 struct functor_time_deriv {
     functor_time_deriv() : myvec{50} {
         std::iota(myvec.begin(), myvec.end(), 0);
         myvec *= 0.1;
-        std::cout << myvec << std::endl;
     }
 
     template <typename V1, typename V2>
@@ -43,13 +53,14 @@ struct functor_time_deriv {
 };
 
 
-
+// functor that can be used in the backward euler from integration.hpp
+// calculates the jacobi-matrix from the backwards error
+// = jacobi-matrix from (X_k + delta_t * X_(K+1)' - X_(k+1)) with respect to X_(k+1)
 template <typename Precision>
 struct functor_error_jacobian {
     functor_error_jacobian() : myvec{50} {
         std::iota(myvec.begin(), myvec.end(), 0);
         myvec *= 0.1;
-        std::cout << myvec << std::endl;
     }
 
     template <typename V, typename M>
@@ -61,16 +72,10 @@ struct functor_error_jacobian {
                 if (i != j) {
                     jacob(i, j) = 0;
                 } else {
-                    jacob(i, j) = -30 * pow(x(i) - myvec(i), 2) * x(i) - 1;
+                    jacob(i, j) = -30 * pow(x(i) - myvec(i), 2) * delta_t - 1;
                 }
             }
         }
-
-        //ublas::vector<Precision> dx = x - myvec;
-        //dx = - 30. * delta_t * element_prod(element_prod(dx, dx), x) - ublas::scalar_vector<Precision>(50) ;
-        //ublas::diagonal_matrix<Precision> jacobian(dx.size(), dx.data());
-
-        std::cout << "jacobian: " << jacob << std::endl;
     }
 
     ublas::vector<Precision> myvec;
@@ -79,57 +84,37 @@ struct functor_error_jacobian {
 
 
 
-
 int main(int argc, char *argv[]) {
+    typedef double Precision; // the precision of floating point numbers
+
     assert(argc == 3);
     int N = std::stoi(argv[1]);
-    double T = std::stod(argv[2]);
+    Precision T = std::stod(argv[2]);
+    Precision delta_t = T / N;
 
-    // beta, mu, gamma, alpha, delta, S0, I0
-    ublas::vector<double> p(5);
-    //p <<= 0.5, 0, 0.2, 0.005, 0;
-    p <<= 10.0, 0.0, 10.0, 1.0, 0.0;
 
-    ublas::matrix<double> X(N + 1, 50);
-    ublas::matrix_row<ublas::matrix<double>> initial_conditions(X, 0);
+    ublas::matrix<Precision> X(N + 1, 50);
+    ublas::matrix_row<ublas::matrix<Precision>> initial_conditions(X, 0);
     std::iota(initial_conditions.begin(), initial_conditions.end(), 1);
     initial_conditions *= 0.01;
 
-
+    // lambda expression that can be used to calculate time derivative in the functions from integration.hpp
     auto lambda_time_deriv = [] ( \
-    ublas::matrix_row<ublas::matrix<double>> const& x, ublas::vector<double> & dx) -> void {
+    ublas::vector<Precision> const& x, ublas::vector<Precision> & dx) -> void {
         for (size_t i = 0; i < 50; ++i) {
             dx(i) = - 10 * std::pow(x(i) - 0.1 * i, 3);
         }
     };
 
 
-    functor_time_deriv<double> d2;
+    integration::forward_euler(X, function_time_deriv<Precision>, delta_t);
+    IO::write_sim2(X, "fwe_sim2.txt", T, N);
 
+    functor_time_deriv<Precision> deriv_inst;
+    functor_error_jacobian<Precision> jacob_inst;
+    integration::backward_euler(X, deriv_inst, jacob_inst, delta_t);
+    IO::write_sim2(X, "bwe_sim2.txt", T, N);
 
-
-    integration::forward_euler(X, d2, T);
-
-    for (size_t i = 0; i < N + 1; ++i) {
-        std::cout << std::endl << i * T / N << ' ';
-        for (size_t j = 0; j < 5; ++j) { std::cout << X(i, j) << ' ';}
-    }
-    std::cout << std::endl;
-
-
-    integration::forward_euler(X, lambda_time_deriv, T);
-    
-    //integration::heun_method(SIQRD, myderiv, T);
-    //integration::heun_method(SIQRD, derivative5, T);
-    //backward_euler(SIQRD, myderiv, myjacobian, T);
-    
-
-
-    // print results
-    for (size_t i = 0; i < N + 1; ++i) {
-        std::cout << std::endl << i * T / N << ' ';
-        for (size_t j = 0; j < 5; ++j) { std::cout << X(i, j) << ' ';}
-    }
-    std::cout << std::endl;
-
+    integration::heun_method(X, lambda_time_deriv, delta_t);
+    IO::write_sim2(X, "heun_sim2.txt", T, N);
 }
